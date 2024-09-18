@@ -28,7 +28,7 @@ def leer_archivo(file_path):
                     city_number = int(node_x_y[0])
                     x_coord = float(node_x_y[1])
                     y_coord = float(node_x_y[2])
-                    coordinates.append((x_coord, y_coord))#cada indice del arreglo 
+                    coordinates.append((city_number,x_coord, y_coord))#cada indice del arreglo 
 
         best_sol = np.zeros(dimension) # default value para la mejor solución
         act_sol = best_sol #Al inicio es la misma
@@ -67,6 +67,6 @@ class TSP:
         return self.act_sol
     
 # Usage
-file_path = "example.tsp"
-city_coordinates = read_tsp(file_path)
-print(city_coordinates)
+file_path = "berlin52.tsp"
+city_coordinates = leer_archivo(file_path)
+print(city_coordinates.get_points())
