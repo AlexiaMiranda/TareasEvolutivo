@@ -30,13 +30,15 @@ def sol_aleatoria(file_path ):
     distancia_max = 0.0
     primera_ciudad = 0
     segunda_ciudad = 0
-    for ciudad1 in ciudades:
-        for ciudad2 in ciudades:
-            distancia_actual = math.sqrt(((ciudad2[1] - ciudad1[1])*(ciudad2[1] - ciudad1[1]))+ ((ciudad2[2] - ciudad1[2])*(ciudad2[2] - ciudad1[2])))
-            if distancia_actual > distancia_max:
-                primera_ciudad = ciudad1[0]
-                segunda_ciudad = ciudad2[0]
-                distancia_max = distancia_actual
+    i = 0
+    for ciudad in ciudades:
+        distancia_actual = math.sqrt(((ciudad[i] - ciudad[i])*(ciudad[i] - ciudad[i]))+ ((ciudad[i+1] - ciudad[i+1])*(ciudad[i+1] - ciudad[i+1])))
+        if distancia_actual > distancia_max:
+            primera_ciudad = ciudad[i]
+            segunda_ciudad = ciudad[i+1]
+            distancia_max = distancia_actual
+        i += 1
+        
 
     print(nombre)
     print(dimension)
