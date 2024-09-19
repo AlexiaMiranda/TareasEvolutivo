@@ -27,29 +27,43 @@ def sol_aleatoria(file_path ):
             archivo.write(str(ciudad[0])+" "+str(ciudad[1])+" "+str(ciudad[2])+"\n")
 
 
-    distancia_max = 0.0
-    primera_ciudad = 0
-    segunda_ciudad = 0
-    i = 0
-    for ciudad in ciudades:
-        distancia_actual = math.sqrt(((ciudad[i] - ciudad[i])*(ciudad[i] - ciudad[i]))+ ((ciudad[i+1] - ciudad[i+1])*(ciudad[i+1] - ciudad[i+1])))
-        if distancia_actual > distancia_max:
-            primera_ciudad = ciudad[i]
-            segunda_ciudad = ciudad[i+1]
-            distancia_max = distancia_actual
-        i += 1
+
+    matriz = ejemplar_tsp.get_matriz()
+    distancia_max = matriz[0][0]
+    ciudad_a , ciudad_b
+    for i in range(1, dimension-2):
+        ciudad_a = i
+        for j in range (1, dimension-2):
+            distancia_actual = matriz[i][j]
+            if distancia_actual>distancia_max:
+                distancia_max = distancia_actual
+            ciudad_b = j
         
 
     print(nombre)
     print(dimension)
     print(distancia_max)
-    print(str(primera_ciudad)+" ,"+str(segunda_ciudad))
+    print(str(ciudad_a)+" ,"+str(ciudad_b))
     return sol_perm
 
 sol_aleatoria("berlin52.tsp")
 
 """Función para evaluar una solución aleatoria"""
 def evaluar_sol(file_path): 
-    ejemplar_tsp = leer_archivo(file_path)
-    distancia_max = 0.0
+    ejemplar_tsp = TSP(file_path)
+    matriz = ejemplar_tsp.get_matriz()
+
+    sol_aleatoria = sol_aleatoria(file_path)
     sol_eval = 0.0
+
+    for i in range(len(sol_aleatoria)-2):
+        ciudad_i = sol_aleatoria[i]
+        ciudad_j = sol_aleatoria[i+1]
+        distancia_ij = matriz[ciudad_i][ciudad_j]
+        sol_eval = sol_eval+distancia_ij
+
+    return sol_eval
+
+
+        
+

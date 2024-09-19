@@ -1,4 +1,5 @@
 import numpy as np
+import math
 #Función para leer el archivo TSP
 def leer_archivo(file_path):
     with open(file_path, 'r') as file:
@@ -32,9 +33,30 @@ def leer_archivo(file_path):
 
         best_sol = np.zeros(dimension) # default value para la mejor solución
         act_sol = best_sol #Al inicio es la misma
-        tsp_element = TSP(name,coordinates, dimension, best_sol, act_sol)
+        matriz_distancias = calcula_matriz(coordinates, dimension)
+        tsp_element = TSP(name,coordinates, dimension, best_sol, act_sol,matriz_distancias)
     
     return tsp_element
+
+"""Funcion que crea la matriz de distancia entre puntos"""
+def calcula_matriz(ciudades, dimension):
+    matriz = []
+    #Inicializamos con zeros
+    for i in range(dimension-1):
+        columna = np.zeros(dimension-1)
+        matriz.append(columna)
+    i= 0
+    j = 0
+    for ciudad_i in ciudades:
+        for ciudad_j in ciudades:
+            distancia_actual = math.sqrt(((ciudad_i[1] - ciudad_j[1])*(ciudad_i[1] - ciudad_j[1]))+ ((ciudad_i[2] - ciudad_j[2])*(ciudad_i[2] - ciudad_j[2])))
+            matriz[i][j] = distancia_actual
+            j= j+1
+
+        i= i+1
+    return matriz
+
+
 
 #Clase para crear un ejemplar de TSP
 """Clase para crear un ejemplar de TSP
@@ -44,12 +66,13 @@ dimension: Dimensión de los vectores solución
 best_sol: Vector permutación que representa la mejor solución encontrada hasta el momento
 act_sol: Vector de la solución activa"""
 class TSP:
-    def __init__(self, name, points, dimension, best_sol, act_sol):
+    def __init__(self, name, points, dimension, best_sol, act_sol, matriz_distancia):
         self.name = name
         self.points = points
         self.dimension = dimension
         self.best_sol = best_sol
         self.act_sol = act_sol
+        self.matriz_distancia = matriz_distancia
     
     def get_points(self):
         return self.points
@@ -65,6 +88,9 @@ class TSP:
     
     def get_act_sol(self):
         return self.act_sol
+    
+    def get_matriz(self):
+        return self.matriz_distancia
     
 # Usage
 file_path = "berlin52.tsp"
