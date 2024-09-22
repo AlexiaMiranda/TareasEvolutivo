@@ -41,19 +41,32 @@ def leer_archivo(file_path):
 """Funcion que crea la matriz de distancia entre puntos"""
 def calcula_matriz(ciudades, dimension):
     matriz = []
-    #Inicializamos con zeros
-    for i in range(dimension-1):
-        columna = np.zeros(dimension-1)
+    #Inicializamos arreglos de dimension+1 con zeros, dimension + 1 para que cache 52
+    for i in range(dimension+1):
+        columna = np.zeros(dimension+1)
         matriz.append(columna)
-    i= 0
-    j = 0
-    for ciudad_i in ciudades:
-        for ciudad_j in ciudades:
-            distancia_actual = math.sqrt(((ciudad_i[1] - ciudad_j[1])*(ciudad_i[1] - ciudad_j[1]))+ ((ciudad_i[2] - ciudad_j[2])*(ciudad_i[2] - ciudad_j[2])))
-            matriz[i][j] = distancia_actual
-            j= j+1
 
-        i= i+1
+
+
+    for i in range(1,dimension):
+        #Suponemos que las ciudades estan en orden eg. 1...52
+        city1 = ciudades[i] #recordemos que las ciudades son una lista de tripletas (id,x,y)
+        id1 = city1[0] #porque iniciamos en 1 podemos mantener la correspondencia
+        coord_x1 = city1[1]
+        coord_y1 = city1[2]
+        for j in range(1,dimension): #Es más sencillo manejarlo desde 1, para no alterar los id's de las ciudades
+
+            city2 = ciudades[j] 
+            id2= city2[0]
+
+            coord_x2 = city2[1]
+            coord_y2 = city2[2]
+            distancia_actual = math.sqrt(((coord_x2 - coord_x1)*(coord_x2 - coord_x1))+ ((coord_y2 - coord_y1)*(coord_y2 - coord_y1)))
+            matriz[id1][id2] = distancia_actual
+            
+
+    
+            
     return matriz
 
 
@@ -95,4 +108,5 @@ class TSP:
 # Usage
 file_path = "berlin52.tsp"
 city_coordinates = leer_archivo(file_path)
-print(city_coordinates.get_points())
+
+        
