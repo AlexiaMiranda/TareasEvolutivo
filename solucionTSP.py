@@ -70,6 +70,26 @@ def evaluar_sol_aleatoria(file_path):
     print("Costo de la solución: "+ str(sol_eval))
     return sol_eval
 
-evaluar_sol_aleatoria("berlin52.tsp")
+#Usage
+#evaluar_sol_aleatoria("berlin52.tsp")
         
+def cambiar_consecutivos(file_path):
+    sol_aleatoria = sol_aleatoria(file_path)
+    ciudad_aux
+    num_random = random.radint(0,len(sol_aleatoria)-2)
+    ciudad_aux = sol_aleatoria[num_random]
+    sol_aleatoria[num_random] = sol_aleatoria[num_random+1]
+    sol_aleatoria[num_random+1] = ciudad_aux
+    print("Se cambiaron las ciudades en los indices " + num_random + "y " + num_random+1)
+    return sol_aleatoria
 
+def cambiar_noconsecutivos(file_path):
+    sol_aleatoria = sol_aleatoria(file_path)
+    ciudad_aux
+    num_random1 = random.radint(0,len(sol_aleatoria)-2)
+    num_random2 = random.radint(0,len(sol_aleatoria)-2)
+    ciudad_aux = sol_aleatoria[num_random1]
+    sol_aleatoria[num_random1] = sol_aleatoria[num_random2]
+    sol_aleatoria[num_random2] = ciudad_aux
+    print("Se cambiaron las ciudades en los indices " + num_random1 + "y " + num_random2)
+    return sol_aleatoria

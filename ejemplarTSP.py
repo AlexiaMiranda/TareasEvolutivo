@@ -106,7 +106,7 @@ class TSP:
         return self.matriz_distancia
     
 # Usage
-file_path = "berlin52.tsp"
-city_coordinates = leer_archivo(file_path)
+#file_path = "berlin52.tsp"
+#city_coordinates = leer_archivo(file_path)
 
         
