@@ -1,5 +1,4 @@
-# Tarea3Evolutivo
-Repositorio para la tarea 3 de Computo Evolutivo: Metaheuristica de Trayectoria TSP
+# Tarea 4 Evolutivo
 Integrantes:
 
 Rodríguez Miranda Alexia  316293611                
