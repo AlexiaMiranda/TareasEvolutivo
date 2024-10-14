@@ -1,9 +1,9 @@
-from Tarea3Evolutivo import ejemplarTSP
+#from Tarea3Evolutivo import ejemplarTSP
 from ejemplarTSP import *
 from solucionTSP import *
 
 file_path = str(input("Ingrese el nombre del archivo: "))
-tsp = ejemplarTSP.leer_archivo(file_path)
+tsp = leer_archivo(file_path)
 solucion = []
 while True:
     print("\nEscribe una opción: ")
