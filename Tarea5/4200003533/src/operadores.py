@@ -149,10 +149,12 @@ def siguiente_generacion(poblacion:Poblacion, num_elite):
 
     for elite in fijos:
         next_gen.append(elite)
-    
 
-    
-        
+def recocido_lineal(T_inicial, T_final, iteracion, max_iteraciones):
+     return T_inicial - (T_inicial - T_final) * (iteracion / max_iteraciones)
+
+def recocido_exponencial(T_inicial, tasa, iteracion):
+    return T_inicial * (tasa ** iteracion)
 
 
 
